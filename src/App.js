@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer, useState } from "react";
+import { reducer } from "./redux/reducer";
+import cloud from "./assets/images/cloud-computing.png";
+import mario from "./assets/images/mario.png";
+import luigi from "./assets/images/luigi.png";
 
+const defaultState = {
+  animation: "",
+  isStart: false,
+  buttonContent: "Start",
+};
 function App() {
+  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [isStart, setIsStart] = useState(false);
+
+  const handleButton = () => {
+    if (isStart) {
+      dispatch({ type: "STOP" });
+      setIsStart(!isStart);
+    } else {
+      dispatch({ type: "START" });
+      setIsStart(!isStart);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="sky">
+        <img
+          src={cloud}
+          className={`cloud cloud${state.animation}`}
+          alt="cloud"
+        />
+        <img
+          src={cloud}
+          className={`cloud cloud${state.animation}`}
+          alt="cloud"
+        />
+        <img
+          src={cloud}
+          className={`cloud cloud${state.animation}`}
+          alt="cloud"
+        />
+        <img
+          src={cloud}
+          className={`cloud cloud${state.animation}`}
+          alt="cloud"
+        />
+      </div>
+      <div className="background">
+        <button className="btn" onClick={handleButton}>
+          {isStart ? "Stop" : "Start"}
+        </button>
+      </div>
+      <div className="road">
+        <img src={mario} className={`mario${state.animation}`} alt="mario" />
+
+        <div className="road-line"></div>
+
+        <img src={luigi} className={`luigi${state.animation}`} alt="luigi" />
+      </div>
+    </>
   );
 }
 

@@ -1,13 +1,174 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "SuperMario256";
+  src: url("./assets/font/SuperMario256.ttf");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "SuperMario256";
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.sky {
+  background-color: deepskyblue;
+  width: 100%;
+  min-height: 30vh;
+}
+
+.sky .cloud-start {
+  animation-name: clouds;
+  animation-duration: 15s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+.sky .cloud:nth-child(1) {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.sky .cloud:nth-child(2) {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  opacity: 0.7;
+}
+
+.sky .cloud:nth-child(3) {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+  opacity: 0.5;
+}
+
+.sky .cloud:nth-child(4) {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+}
+
+.background {
+  background-color: green;
+  width: 100%;
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background button {
+  outline: none;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: salmon;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+  font-size: 0.8em;
+  background-color: salmon;
+  animation-name: bounce;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+}
+
+.background button:hover {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.road {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: gray;
+}
+
+.road .road-line {
+  border: 20px dashed wheat;
+  align-self: center;
+  margin-top: 30px;
+}
+
+.mario,
+.luigi {
+  width: 50px;
+  margin-top: 15px;
+}
+
+.mario-start {
+  animation-name: drive;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.32, 0.31, 0.67, 0.83);
+}
+
+.luigi-start {
+  animation-name: drive;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.66, 0.23, 0.58, 0.83);
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.7);
+  }
+}
+
+@keyframes drive {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes clouds {
+  from {
+    transform: translateX(-50px);
+  }
+
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+@media screen and (min-width: 740px) {
+  * {
+    font-size: 18px;
+  }
+  .mario,
+  .luigi {
+    width: 80px;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  * {
+    font-size: 20px;
+  }
+  .mario,
+  .luigi {
+    width: 90px;
+    margin-top: 30px;
+  }
+  .sky .cloud {
+    width: 100px;
+    height: auto;
+  }
 }
